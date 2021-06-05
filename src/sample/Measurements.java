@@ -1,4 +1,5 @@
 package sample;
+import javafx.scene.chart.*;
 
-public class Measurements {
+public class Measurements extends FrontPageController{
 }
