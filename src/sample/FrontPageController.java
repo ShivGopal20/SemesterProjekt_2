@@ -13,7 +13,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.lang.*;
 
 public class FrontPageController {
