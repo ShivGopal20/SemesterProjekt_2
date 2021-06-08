@@ -13,9 +13,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import jssc.SerialPort;
+
 import java.lang.*;
 
-public class FrontPageController {
+public class FrontPageController extends Sensor{
     @FXML
     public LineChart<?, ?> ecgGraph;
     @FXML
@@ -40,6 +42,13 @@ public class FrontPageController {
             String NewEcgText = ecgText.getText();
             ecgText.setText(NewEcgText);
         }
+    }
+
+    public void test(){
+        Sensor test1234 = new Sensor();
+
+       // test1234.maaling();
+
     }
 
     public void ShowGraph(){
