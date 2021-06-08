@@ -16,6 +16,7 @@ public class Sensor{
             sensor.setDTR(true);
         } catch (SerialPortException ex) {
             System.out.println("FEJL SERIALPORTEXCEPTION");
+
         }
     }
 
