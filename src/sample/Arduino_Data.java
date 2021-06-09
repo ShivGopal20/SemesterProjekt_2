@@ -6,15 +6,15 @@ import jssc.SerialPortException;
 public class Arduino_Data {
     public static void main(String[] args) {
         Sensor sensor= new Sensor();
-        sensor.rigtigSensor();
+        sensor.ArduinoData();
 
     }
 
     public static class Sensor {
         double vaerdi;
 
-        public double rigtigSensor() {
-            SerialPort port = new SerialPort("/dev/cu.usbmodem14201"); // find din COM port under enheder i kontrolpanel
+        public double ArduinoData() {
+            SerialPort port = new SerialPort("/dev/cu.usbmodem14201");
 
             //Opsætning af serialport
             try {
