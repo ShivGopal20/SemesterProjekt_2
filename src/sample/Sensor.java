@@ -2,48 +2,49 @@ package sample;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import jssc.SerialPortList;
-
-import java.sql.SQLOutput;
-import java.util.Arrays;
 
 public class Sensor{
-    private SerialPort sensor = new SerialPort("/dev/tty.usbmodem14201");
+    public String vaerdi;
+    public String Nyvaerdi;
 
-    public Sensor() {
-        //JSSC biblotek kommer fra  https://github.com/java-native/jssc/releases
-        String[] portnavne = SerialPortList.getPortNames();
-        System.out.println("Serialport 1: "+ Arrays.toString(portnavne));
+    public String ArduinoData() {
+        SerialPort sPort = new SerialPort("/dev/cu.usbmodem14201");//Change port path
 
         try {
-            sensor.setParams(9600, 8, 1, 0);
-
-            sensor.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
-            sensor.purgePort(SerialPort.PURGE_TXCLEAR | SerialPort.PURGE_RXCLEAR);//prøver at slette data, hvis der er data fra forrige læsning
-            sensor.setDTR(true);
-            sensor.openPort();
-         //  sensor.closePort();
-        } catch (SerialPortException ex) {
-           ex.printStackTrace();
+            //installing Serial
+            sPort.openPort();
+            sPort.setParams(57600, 8, 1, 0);
+            sPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
+            sPort.setDTR(true);
+        } catch (SerialPortException e) {
+            e.printStackTrace();
         }
-    }
 
-    public String maaling() {
-        try {
-            if (sensor.getInputBufferBytesCount() > 0) {
-                return sensor.readString();
-            } else {
-                return null;
+        //
+        while (true) {
+            try {
+                if (sPort.getInputBufferBytesCount() > 0) {
+                    String input = sPort.readString();
+                    break;
+                } else {
+                    Thread.sleep(1000);
+                }
+            } catch (SerialPortException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (SerialPortException ex) {
-            System.out.println("fejl: " + ex);
-        }
-        return null;
-    }
-    static SerialPort chosenPort;
-    public void metode() {
-       // SerialPort[] Portnames = SerialPort.
-    }
 
+
+        }
+
+        try {
+            sPort.closePort();
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+        Nyvaerdi = vaerdi.replaceAll("[^0-9]","");
+        return Nyvaerdi;
+    }
 
 }

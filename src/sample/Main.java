@@ -18,5 +18,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        Arduino_Data.Sensor sensor = new Arduino_Data.Sensor();
+        while (true) {
+            sensor.ArduinoData();
     }
-}
+}}

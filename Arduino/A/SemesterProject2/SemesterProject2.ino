@@ -3,7 +3,7 @@
 #include <SPI.h>
 
 
-const long tSampleInMicros =3500; //1000000;  
+const long tSampleInMicros =2500; //1000000;  
 // Sample time in microseconds
 
 SPISettings settings(8000000, MSBFIRST, SPI_MODE0);
@@ -13,7 +13,7 @@ void setup() {
 Timer1.initialize(tSampleInMicros);          // initialize timer1, and set the period
   Timer1.attachInterrupt(measureAndSend);    // attaches callback() as a timer overflow interrupt
  
-    Serial.begin(9600);      //baud rate ok?               
+    Serial.begin(57600);      //baud rate ok?               
     SPI.begin();
     SPI.beginTransaction(settings);
     pinMode(10, OUTPUT);
@@ -33,5 +33,7 @@ return Tal;
 
  void measureAndSend(){
    int b = getECGADC();
-   Serial.println(b);
+   Serial.print(b);
+   Serial.println(",");
+
   }

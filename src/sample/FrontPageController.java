@@ -28,6 +28,7 @@ public class FrontPageController extends Sensor{
     public TextArea ecgText;
 
     int v = 0;
+    boolean h = true;
     XYChart.Series ecgValues = new XYChart.Series();
 
     public void StartMeasurement(){
@@ -45,10 +46,10 @@ public class FrontPageController extends Sensor{
     }
 
     public void test(){
-        Sensor test1234 = new Sensor();
-
-       // test1234.maaling();
-
+        Arduino_Data.Sensor sensor = new Arduino_Data.Sensor();
+        while (h==true) {
+            System.out.println(sensor.ArduinoData());
+        }
     }
 
     public void ShowGraph(){
@@ -63,6 +64,9 @@ public class FrontPageController extends Sensor{
     }
 
     public void StopMeasurement() {
+        h=false;
+        Measurements Tester = new Measurements();
+        Tester.Printe();
     }
 
     public void SaveData() {
