@@ -1,10 +1,10 @@
-package sample;
+/*package sample;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
 public class Sensor{
-    public String vaerdi;
+    public String input;
     public String Nyvaerdi;
 
     public String ArduinoData() {
@@ -43,8 +43,10 @@ public class Sensor{
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
-        Nyvaerdi = vaerdi.replaceAll("[^0-9]","");
-        return Nyvaerdi;
+       // Nyvaerdi = input.replaceAll("[^0-9]","");
+        return input;
     }
 
 }
+
+ */

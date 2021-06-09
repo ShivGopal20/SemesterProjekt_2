@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,8 +17,9 @@ import javafx.stage.Stage;
 import jssc.SerialPort;
 
 import java.lang.*;
+import java.util.concurrent.ScheduledExecutorService;
 
-public class FrontPageController extends Sensor{
+public class FrontPageController extends Thread {
     @FXML
     public LineChart<?, ?> ecgGraph;
     @FXML
@@ -45,12 +47,17 @@ public class FrontPageController extends Sensor{
         }
     }
 
+
+
+    Arduino_Data b = new Arduino_Data();
     public void test(){
-        Arduino_Data.Sensor sensor = new Arduino_Data.Sensor();
-        while (h==true) {
-            System.out.println(sensor.ArduinoData());
+        if(h==true) {
+            Platform.runLater(()-> {
+                System.out.println(b.ArduinoData());
+           } );
         }
     }
+
 
     public void ShowGraph(){
         if (v==0){

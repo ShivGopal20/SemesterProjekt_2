@@ -9,17 +9,14 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FrontPage.fxml"));
         primaryStage.setTitle("Front Page");
-        primaryStage.setScene(new Scene(root, 640,400));
+        primaryStage.setScene(new Scene(root, 640, 400));
         primaryStage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
-        Arduino_Data.Sensor sensor = new Arduino_Data.Sensor();
-        while (true) {
-            sensor.ArduinoData();
     }
-}}
+}

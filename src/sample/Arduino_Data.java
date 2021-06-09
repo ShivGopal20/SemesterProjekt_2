@@ -3,22 +3,12 @@ package sample;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
-public class Arduino_Data {
-
-    public static void main(String[] args) {
-        Sensor sensor = new Sensor();
-        while (true) {
-            sensor.ArduinoData();
-        }
-
-    }
-
-
-
-    public static class Sensor {
+public class Arduino_Data extends Thread {
         double vaerdi;
+        String vaerdi1;
+        String input;
 
-        public double ArduinoData() {
+        public String ArduinoData() {
             SerialPort sPort = new SerialPort("/dev/cu.usbmodem14201");//Change port path
 
             try {
@@ -31,12 +21,10 @@ public class Arduino_Data {
                 e.printStackTrace();
             }
 
-            //
             while (true) {
                 try {
                     if (sPort.getInputBufferBytesCount() > 0) {
-                        String input = sPort.readString();
-                        System.out.println(input);
+                        input = sPort.readString();
                         break;
                     } else {
                         Thread.sleep(1000);
@@ -55,10 +43,7 @@ public class Arduino_Data {
             } catch (SerialPortException e) {
                 e.printStackTrace();
             }
-            return vaerdi;
+            return input;
         }
 
     }
-
-
-}
