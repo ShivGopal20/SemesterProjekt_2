@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,10 +13,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import jssc.SerialPort;
-
-import java.lang.*;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class FrontPageController extends Thread {
     @FXML
@@ -32,64 +27,59 @@ public class FrontPageController extends Thread {
     int v = 0;
     boolean h = true;
     XYChart.Series ecgValues = new XYChart.Series();
+    Arduino_Data b = new Arduino_Data();
+    Measurements d = new Measurements();
 
-    public void StartMeasurement(){
+    public void StartMeasurement() {
         v = 1;
-        int[] mV = {0, 10, 15, 20, 15, 10, 0, 0, -10, 100, -30, 0, 0, 5, 10, 20, 25, 30, 20, 10, 5, 0};
-        int[] ms = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
+
         ecgText.setText("ECG & time \n-----------");
 
-        for (int t = 0; t < mV.length; t++) {
-            ecgValues.getData().add(new XYChart.Data(String.valueOf(mV[t]), ms[t]));
-            ecgText.appendText("\n"+ms[t]+"ms  ,  "+mV[t]+"mV");
+        for (int t = 0; t < d.ArrayLængde; t++) {
+
+            ecgValues.getData().add(new XYChart.Data(String.valueOf(d.o[t]), t));
+            ecgText.appendText("\n" + t + "ms  ,  " + d.o[t] + "mV");
             String NewEcgText = ecgText.getText();
             ecgText.setText(NewEcgText);
         }
     }
 
-
-
-    Arduino_Data b = new Arduino_Data();
-    public void test(){
-        if(h==true) {
-            Platform.runLater(()-> {
-                System.out.println(b.ArduinoData());
-           } );
-        }
+    public void test() {
+        d.Printe();
     }
 
 
-    public void ShowGraph(){
-        if (v==0){
+    public void ShowGraph() {
+        if (v == 0) {
             String AlertTitle = "Error";
             String AlertNote = "There is no ECG data available";
-            AlertPopUp(AlertTitle,AlertNote);
-        }
-        else{
+            AlertPopUp(AlertTitle, AlertNote);
+        } else {
             ecgGraph.getData().add(ecgValues);
         }
     }
 
     public void StopMeasurement() {
-        h=false;
+        h = false;
         Measurements Tester = new Measurements();
         Tester.Printe();
     }
 
     public void SaveData() {
-        if (v==0){
+        if (v == 0) {
             String AlertTitle = "Error";
             String AlertNote = "There is no ECG data to save";
-            AlertPopUp(AlertTitle,AlertNote);
-        }
-        else {
+            AlertPopUp(AlertTitle, AlertNote);
+        } else {
 
         }
     }
+
     public void ShowPulse() {
 
     }
-    public void AlertPopUp(String AlertTitle, String AlertNote){
+
+    public void AlertPopUp(String AlertTitle, String AlertNote) {
         Stage AlertBox = new Stage();
 
         AlertBox.initModality(Modality.APPLICATION_MODAL);
@@ -100,10 +90,10 @@ public class FrontPageController extends Thread {
         Note.setText(AlertNote);
 
         Button Close = new Button("OK");
-        Close.setOnAction(e->AlertBox.close());
+        Close.setOnAction(e -> AlertBox.close());
 
         VBox AlertBoxLayout = new VBox(10);
-        AlertBoxLayout.getChildren().addAll(Note,Close);
+        AlertBoxLayout.getChildren().addAll(Note, Close);
         AlertBoxLayout.setAlignment(Pos.CENTER);
 
         Scene AlertScene = new Scene(AlertBoxLayout);
@@ -111,7 +101,7 @@ public class FrontPageController extends Thread {
         AlertBox.show();
     }
 
-    public void Clear(){
+    public void Clear() {
         ecgText.clear();
         ecgGraph.getData().clear();
         v = 0;

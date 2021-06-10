@@ -3,7 +3,7 @@
 #include <SPI.h>
 
 
-const long tSampleInMicros =2500; //1000000;  
+const long tSampleInMicros =1000; //1000000;  
 // Sample time in microseconds
 
 SPISettings settings(8000000, MSBFIRST, SPI_MODE0);
@@ -34,6 +34,6 @@ return Tal;
  void measureAndSend(){
    int b = getECGADC();
    Serial.print(b);
-   Serial.println(",");
+   Serial.print(",");
 
   }
