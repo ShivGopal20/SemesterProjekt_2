@@ -14,10 +14,10 @@ public class Measurements {
                 ArrayLængde = o.length;
                 for (int a = 0; a < o.length; a++) {
                     o[a].replaceAll("[0-9]", "");
-                    System.out.println(o[a] + " ");
+
                 }
             }
-        }
+        }System.out.println("Programmet kører...");
         b.PortCloser();
     }
 }

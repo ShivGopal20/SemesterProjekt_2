@@ -30,21 +30,26 @@ public class FrontPageController extends Thread {
     Arduino_Data b = new Arduino_Data();
     Measurements d = new Measurements();
 
-    public void StartMeasurement() {
-        v = 1;
+    public void ShowValues() {
+        if (v == 0) {
+            String AlertTitle = "Error";
+            String AlertNote = "There are no ECG data to show";
+            AlertPopUp(AlertTitle, AlertNote);
+        } else {
+            ecgText.setText("ECG & time \n-----------");
 
-        ecgText.setText("ECG & time \n-----------");
+            for (int t = 0; t < d.ArrayLængde; t++) {
 
-        for (int t = 0; t < d.ArrayLængde; t++) {
-
-            ecgValues.getData().add(new XYChart.Data(String.valueOf(d.o[t]), t));
-            ecgText.appendText("\n" + t + "ms  ,  " + d.o[t] + "mV");
-            String NewEcgText = ecgText.getText();
-            ecgText.setText(NewEcgText);
+                ecgValues.getData().add(new XYChart.Data(String.valueOf(d.o[t]), t));
+                ecgText.appendText("\n" + t + "ms  ,  " + d.o[t] + "mV");
+                String NewEcgText = ecgText.getText();
+                ecgText.setText(NewEcgText);
+            }
         }
     }
 
-    public void test() {
+    public void Start() {
+        v = 1;
         d.Printe();
     }
 

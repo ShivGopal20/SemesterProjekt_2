@@ -15,8 +15,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="640.0">
          <children>
-            <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#StartMeasurement" text="Start" />
-            <Button layoutX="62.0" layoutY="44.0" mnemonicParsing="false" onAction="#StopMeasurement" text="Stop" />
+            <Button layoutX="40.0" layoutY="51.0" mnemonicParsing="false" onAction="#ShowValues" text="Show Values" />
             <Button layoutX="45.0" layoutY="359.0" mnemonicParsing="false" onAction="#SaveData" text="Save to DB" />
             <Label layoutX="292.0" layoutY="14.0" text="ECG">
                <font>
@@ -25,7 +24,7 @@
             </Label>
             <LineChart fx:id="ecgGraph" layoutX="154.0" layoutY="100.0" prefHeight="300.0" prefWidth="450.0">
               <xAxis>
-                <CategoryAxis label="Time (ms)" side="BOTTOM" tickLabelsVisible="false" tickMarkVisible="false" fx:id="x" />
+                <CategoryAxis label="Time (ms)" side="BOTTOM" tickLabelsVisible="false" fx:id="x" />
               </xAxis>
               <yAxis>
                 <NumberAxis fx:id="y" label="Voltage (mV)" side="LEFT" />
@@ -33,10 +32,10 @@
             </LineChart>
             <Label layoutX="546.0" layoutY="84.0" text="Puls:" />
             <TextField editable="false" layoutX="582.0" layoutY="79.0" prefHeight="27.0" prefWidth="44.0" />
-            <TextArea fx:id="ecgText" layoutX="14.0" layoutY="79.0" prefHeight="270.0" prefWidth="140.0" />
+            <TextArea fx:id="ecgText" layoutX="14.0" layoutY="90.0" prefHeight="259.0" prefWidth="140.0" />
             <Button layoutX="218.0" layoutY="79.0" mnemonicParsing="false" onAction="#ShowGraph" text="Show Graph" />
             <Button layoutX="581.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clear" text="Clear" />
-            <Button layoutX="142.0" layoutY="27.0" mnemonicParsing="false" onAction="#test" text="Test" />
+            <Button layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#Start" text="Start Measurement" />
          </children>
       </AnchorPane>
    </children>
