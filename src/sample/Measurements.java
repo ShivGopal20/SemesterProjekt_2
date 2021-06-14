@@ -2,7 +2,7 @@ package sample;
 
 public class Measurements {
     Sensor sensorObject = new Sensor();
-    int ArrayLemgth;
+    int ArrayLength;
     String[] stringArray;
     String buffer = "";
 
@@ -14,12 +14,12 @@ public class Measurements {
             buffer = buffer + sensorObject.sensorData();
             if (buffer != null && buffer.length() > 0) {
                 stringArray = buffer.split(",");
-                ArrayLemgth = stringArray.length;
-                for (int a = 0; a < ArrayLemgth; a++) {
+                ArrayLength = stringArray.length;
+                for (int a = 0; a < ArrayLength; a++) {
                     stringArray[a].replaceAll("[0-9]", "");
                 }
-                buffer = stringArray[ArrayLemgth - 1];
-                stringArray[ArrayLemgth -1] = null;
+                buffer = stringArray[ArrayLength - 1];
+                stringArray[ArrayLength -1] = null;
 
             }
         }

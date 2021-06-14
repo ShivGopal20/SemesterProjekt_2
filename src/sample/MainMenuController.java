@@ -31,10 +31,10 @@ public class MainMenuController extends Thread {
     public void ShowValues() {
         ecgText.setText("ECG & time \n-----------");
 
-        for (int t = 0; t < measurements.ArrayLemgth; t++) {
+        for (int tæller = 0; tæller < measurements.ArrayLength; tæller++) {
 
-            ecgValues.getData().add(new XYChart.Data(String.valueOf(measurements.stringArray[t]), t));
-            ecgText.appendText("\n" + t + "ms  ,  " + measurements.stringArray[t] + "mV");
+            ecgValues.getData().add(new XYChart.Data(String.valueOf(measurements.stringArray[tæller]), tæller));
+            ecgText.appendText("\n" + tæller + "ms  ,  " + measurements.stringArray[tæller] + "mV");
             String NewEcgText = ecgText.getText();
             ecgText.setText(NewEcgText);
         }
@@ -55,7 +55,6 @@ public class MainMenuController extends Thread {
 
     public void ShowPulse() {
     }
-
 
     public void Clear() {
         ecgText.clear();
