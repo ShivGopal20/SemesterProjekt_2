@@ -13,7 +13,7 @@ void setup() {
 Timer1.initialize(tSampleInMicros);          // initialize timer1, and set the period
   Timer1.attachInterrupt(measureAndSend);    // attaches callback() as a timer overflow interrupt
  
-    Serial.begin(57600);      //baud rate ok?               
+    Serial.begin(57600);      //               
     SPI.begin();
     SPI.beginTransaction(settings);
     pinMode(10, OUTPUT);

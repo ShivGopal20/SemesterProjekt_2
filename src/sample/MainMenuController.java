@@ -9,9 +9,9 @@ import javafx.scene.control.TextArea;
 
 public class MainMenuController extends Thread {
     @FXML
-    public LineChart<?, ?> ecgGraph;
+    public LineChart<Number,Number> ecgGraph;
     @FXML
-    public CategoryAxis x;
+    public NumberAxis x;
     @FXML
     public NumberAxis y;
     @FXML
@@ -31,12 +31,14 @@ public class MainMenuController extends Thread {
     public void ShowValues() {
         ecgText.setText("ECG & time \n-----------");
 
-        for (int tæller = 0; tæller < measurements.ArrayLength; tæller++) {
+        for (int counter = 0; counter < measurements.ArrayData.length; counter++) {
+            System.out.println("her printer vi array " + counter + " " + measurements.ArrayData[counter] );
+           // String ECGvaerdi = String.valueOf(measurements.ArrayData[counter]);
+                ecgValues.getData().add(new XYChart.Data(counter,Integer.parseInt(measurements.ArrayData[counter])));
+                ecgText.appendText("\n" + counter + "ms  ,  " + measurements.ArrayData[counter] + "mV");
+                String NewEcgText = ecgText.getText();
+                ecgText.setText(NewEcgText);
 
-            ecgValues.getData().add(new XYChart.Data(String.valueOf(measurements.stringArray[tæller]), tæller));
-            ecgText.appendText("\n" + tæller + "ms  ,  " + measurements.stringArray[tæller] + "mV");
-            String NewEcgText = ecgText.getText();
-            ecgText.setText(NewEcgText);
         }
     }
 

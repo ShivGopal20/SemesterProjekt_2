@@ -23,7 +23,7 @@
                 </Label>
                 <LineChart fx:id="ecgGraph" layoutX="154.0" layoutY="100.0" prefHeight="300.0" prefWidth="450.0">
                     <xAxis>
-                        <CategoryAxis label="Time (ms)" side="BOTTOM" tickLabelsVisible="false" fx:id="x" />
+                        <NumberAxis label="Time (ms)" side="BOTTOM" tickLabelsVisible="false" fx:id="x" />
                     </xAxis>
                     <yAxis>
                         <NumberAxis fx:id="y" label="Voltage (mV)" side="LEFT" />

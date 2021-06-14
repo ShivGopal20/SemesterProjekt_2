@@ -7,7 +7,24 @@ public class Sensor extends Thread {
     String input;
     SerialPort serialPort = new SerialPort("/dev/cu.usbmodem14101");//ToDo: Change port path
 
-    public void PortOpener() {
+    private Sensor(){
+        //PortOpener();
+        System.out.println("Signals fra porten");
+        Port();
+    }
+
+    public static Sensor getGlobalSensor() {
+
+        return globalSensor;
+    }
+
+    private static final Sensor globalSensor = new Sensor();
+
+
+    
+    //https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples#:~:text=Singleton%20pattern%20restricts%20the%20instantiation,objects%2C%20caching%20and%20thread%20pool.
+
+    public void Port() {
         try {
             //Serial Port set up
             serialPort.openPort();
@@ -19,7 +36,9 @@ public class Sensor extends Thread {
         }
     }
 
+
     public String sensorData() {
+        input = null;
         try {
             if (serialPort.getInputBufferBytesCount() > 0) {
                 input = serialPort.readString();

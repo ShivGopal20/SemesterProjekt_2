@@ -14,6 +14,8 @@ public class Main extends Application {
         primaryStage.setTitle("Front Page");
         primaryStage.setScene(new Scene(root, 640, 400));
         primaryStage.show();
+
+
     }
 
     public static void main(String[] args) {
