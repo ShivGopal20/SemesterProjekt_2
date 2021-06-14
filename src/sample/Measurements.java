@@ -1,23 +1,31 @@
 package sample;
 
 public class Measurements {
-    Arduino_Data b = new Arduino_Data();
-    int ArrayLængde;
-    String[] o;
+    Sensor sensorObject = new Sensor();
+    int ArrayLemgth;
+    String[] stringArray;
+    String buffer = "";
 
-    public void Printe() {
-        b.PortOpener();
+    public void Print() {
+
+        sensorObject.PortOpener();
+
         for (int x = 0; x < 10; x++) {
-            String data = b.ArduinoData();
-            if (data != null) {
-                o = data.split(",");
-                ArrayLængde = o.length;
-                for (int a = 0; a < o.length; a++) {
-                    o[a].replaceAll("[0-9]", "");
-
+            buffer = buffer + sensorObject.sensorData();
+            if (buffer != null && buffer.length() > 0) {
+                stringArray = buffer.split(",");
+                ArrayLemgth = stringArray.length;
+                for (int a = 0; a < ArrayLemgth; a++) {
+                    stringArray[a].replaceAll("[0-9]", "");
                 }
+                buffer = stringArray[ArrayLemgth - 1];
+                stringArray[ArrayLemgth -1] = null;
+
             }
-        }System.out.println("Programmet kører...");
-        b.PortCloser();
+        }
+        for (int x = 0; x< stringArray.length; x++) {
+            System.out.println(stringArray[x]);
+        }
+        sensorObject.PortCloser();
     }
 }
