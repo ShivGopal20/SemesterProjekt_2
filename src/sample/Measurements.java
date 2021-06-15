@@ -24,6 +24,6 @@ public class Measurements {
                     }
                 }
             }
-        sensorObject.PortCloser();
+      //  sensorObject.PortCloser();
     }
 }

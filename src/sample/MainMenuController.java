@@ -44,12 +44,25 @@ public class MainMenuController extends Thread {
         ecgText.setText("ECG & time \n-----------");
 
         for (int counter = 0; counter < measurements.ArrayData.length; counter++) {
+                if (NumberChecker(counter)){
                 ecgValues.getData().add(new XYChart.Data(counter,Integer.parseInt(measurements.ArrayData[counter])));
                 ecgText.appendText("\n" + counter + "ms  ,  " + measurements.ArrayData[counter] + "mV");
                 String NewEcgText = ecgText.getText();
                 ecgText.setText(NewEcgText);
-
+                }
         }
+    }
+
+    public boolean NumberChecker(int counter) {
+        String maaling = measurements.ArrayData[counter];
+        for (int i = 0; i < maaling.length(); i++) {
+            if (maaling.charAt(i) >= '0' && maaling.charAt(i) <= '9') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 
     public void ShowGraph() {ecgGraph.getData().add(ecgValues);
@@ -58,7 +71,9 @@ public class MainMenuController extends Thread {
 
     public void SaveData() {
         for (int counter = 0; counter < measurements.ArrayData.length; counter++){
+            if (NumberChecker(counter)){
         database.ECG_Inserter(Integer.parseInt(measurements.ArrayData[counter]), CprTilSQL);}
+        }
     }
 
     public void ShowPulse() {
@@ -69,7 +84,8 @@ public class MainMenuController extends Thread {
         ecgGraph.getData().clear();
     }
 
-    public void CPR_Tester() {
+    //Denne metoder checker om der er et 10 cifret CPR nummer som kan bruges.
+    public void CPR_Check() {
         try {
             CprString = String.valueOf(CPR_Nummer.getText());
         } catch (Exception e) {
@@ -77,9 +93,7 @@ public class MainMenuController extends Thread {
         }
         if (CprString.length() == 10) {
             CprTilSQL = CprString;
-            AlertPopUp("CPR", "CPR is verified");
-        }
-
+            AlertPopUp("CPR", "CPR is verified");}
         else {
             AlertPopUp("CPR Error", "CPR shall be 10 digits");
         }

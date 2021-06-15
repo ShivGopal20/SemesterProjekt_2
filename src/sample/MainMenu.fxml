@@ -32,7 +32,7 @@
                 <Button layoutX="581.0" layoutY="14.0" mnemonicParsing="false" onAction="#Clear" text="Clear" />
             <TextField fx:id="CPR_Nummer" layoutX="223.0" layoutY="77.0" />
             <Label layoutX="192.0" layoutY="82.0" text="CPR" />
-            <Button layoutX="384.0" layoutY="77.0" mnemonicParsing="false" onAction="#CPR_Tester" text="OK" />
+            <Button layoutX="384.0" layoutY="77.0" mnemonicParsing="false" onAction="#CPR_Check" text="OK" />
             </children>
         </AnchorPane>
     </children>
