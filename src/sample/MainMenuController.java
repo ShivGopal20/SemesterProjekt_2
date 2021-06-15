@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -22,7 +21,7 @@ public class MainMenuController extends Thread {
     DB_MySQL database = new DB_MySQL();
 
     public void ECGstarter() {
-        measurements.Print();
+        measurements.DataProcessing();
         ShowValues();
         ShowGraph();
         ShowPulse();

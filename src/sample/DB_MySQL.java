@@ -4,12 +4,16 @@ import java.sql.*;
 
 public class DB_MySQL {
 
+    //Nedenfor defineres de static variabler der skal bruges i forbindelse med databasen.
+    //Connection bruges til både, at danne og slukke forbindelse med databasen.
+    //De 3 String værdier bruges, som argumenter til at connection også.
     static Connection MySQLConnection;
     static Statement statement;
     static String URL = "jdbc:mysql://localhost:3306/ECG_Gruppe3";
     static String User = "Group3";
     static String Password = "12345";
 
+    //Denne metode forsøger at danne forbindelsen til databasen vha. de angivne argumenter.
     public void SQLConnection(){
         try {
             MySQLConnection = DriverManager.getConnection(URL, User, Password);
@@ -19,6 +23,7 @@ public class DB_MySQL {
         }
     }
 
+    //Denne metoder forsøger at slukke forbindelsen.
     public void SQLConnectionRemover(){
         try {
             if (!MySQLConnection.isClosed()){
@@ -29,6 +34,7 @@ public class DB_MySQL {
         }
     }
 
+    //Her forsøges der at indsætte de målte EKG-værdier ind i tabellen.
     public void ECG_Inserter(int ECG) {
         try {
             SQLConnection();

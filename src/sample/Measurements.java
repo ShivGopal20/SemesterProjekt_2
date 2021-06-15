@@ -4,15 +4,12 @@ public class Measurements {
     Sensor sensorObject = Sensor.getGlobalSensor();
     //singleton pattern for at have global sensor, andre ikke kan overskrive, men tilgå.
     //hensigtmæssigt i projekt?
-    int ArrayLength;
     public String[] ArrayData;
     String buffer = "";
-  //  Sensor sensorObject = new Sensor();
-    int h = 0;
-    int[] intDataArray;
 
-    public void Print() {
-
+    //Nedenstående metoden bruges til at behandle dataen.
+    //Her splittes inputtet op i en array, og der bruges også en buffer, så der ikke mistes data.
+    public void DataProcessing() {
         for (int x = 0; x < 10; x++) {
             String data = sensorObject.sensorData();
             if (data != null) {
