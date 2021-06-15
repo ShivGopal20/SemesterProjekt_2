@@ -25,44 +25,12 @@ public class Measurements {
                             buffer = ArrayData[ArrayData.length - 1];
                         } else {
                             buffer = ""; }
-
-                        //for (int g = 0; g<ArrayData.length; g++)
-                        //{System.out.println(ArrayData[g]);}
-
-                        /*
-                        while (h < ArrayData.length - 1 && ArrayData.length > 1) {
-                            if (ArrayData.length > 1) {
-                                if (h >= 500) {
-                                    break;
-                                }
-                            }
-                            h++;
-                        }
-
-                         */
-
                     }
                 }
             }
 
 
         }
-
-       // for (int x = 0; x < ArrayData.length; x++) {
-       //     System.out.println(ArrayData[x]); }
         sensorObject.PortCloser();
     }
 }
-
- /*
-            buffer = buffer + sensorObject.sensorData();
-            if (buffer != null && buffer.length() > 0) {
-                ArrayData = buffer.split(",");
-                ArrayLength = ArrayData.length;
-                for (int a = 0; a < ArrayLength; a++) {
-                    ArrayData[a].replaceAll("[0-9]", "");
-                }
-                buffer = ArrayData[ArrayLength - 1];
-                ArrayData[ArrayLength -1] = null;
-                }
-             */

@@ -19,9 +19,10 @@ public class MainMenuController extends Thread {
 
     XYChart.Series ecgValues = new XYChart.Series();
     Measurements measurements = new Measurements();
+    DB_MySQL database = new DB_MySQL();
 
     public void ECGstarter() {
-        Start();
+        measurements.Print();
         ShowValues();
         ShowGraph();
         ShowPulse();
@@ -42,17 +43,14 @@ public class MainMenuController extends Thread {
         }
     }
 
-    public void Start() {
-        measurements.Print();
-    }
-
-
-    public void ShowGraph() {
-        ecgGraph.getData().add(ecgValues);
+    public void ShowGraph() {ecgGraph.getData().add(ecgValues);
     }
 
 
     public void SaveData() {
+        for (int counter = 0; counter < measurements.ArrayData.length; counter++){
+        database.ECG_Inserter(Integer.parseInt(measurements.ArrayData[counter]));
+        }
     }
 
     public void ShowPulse() {

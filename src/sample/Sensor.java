@@ -5,7 +5,7 @@ import jssc.SerialPortException;
 
 public class Sensor extends Thread {
     String input;
-    SerialPort serialPort = new SerialPort("/dev/cu.usbmodem14101");//ToDo: Change port path
+    SerialPort serialPort = new SerialPort("/dev/cu.usbmodem141101");//ToDo: Change port path
 
     private Sensor(){
         //PortOpener();
