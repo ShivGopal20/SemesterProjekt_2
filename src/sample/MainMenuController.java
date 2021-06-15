@@ -32,7 +32,7 @@ public class MainMenuController extends Thread {
         ecgText.setText("ECG & time \n-----------");
 
         for (int counter = 0; counter < measurements.ArrayData.length; counter++) {
-            System.out.println("her printer vi array " + counter + " " + measurements.ArrayData[counter] );
+            //System.out.println("her printer vi array " + counter + " " + measurements.ArrayData[counter] );
            // String ECGvaerdi = String.valueOf(measurements.ArrayData[counter]);
                 ecgValues.getData().add(new XYChart.Data(counter,Integer.parseInt(measurements.ArrayData[counter])));
                 ecgText.appendText("\n" + counter + "ms  ,  " + measurements.ArrayData[counter] + "mV");

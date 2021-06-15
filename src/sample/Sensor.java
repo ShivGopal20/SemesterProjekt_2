@@ -4,30 +4,32 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 
 public class Sensor extends Thread {
+    private static final Sensor globalSensor = new Sensor();
     String input;
-    SerialPort serialPort = new SerialPort("/dev/cu.usbmodem141101");//ToDo: Change port path
+    // SerialPort connection objekts oprettes og Portnavn skal skiftes som findes under "Tools" i arduino programmen.
+    SerialPort serialPort = new SerialPort("/dev/cu.usbmodem14101");//ToDo: Change port path
 
-    private Sensor(){
+    private Sensor() {   // Her tilkaldes JSSC- SerialPort Opsætning
         //PortOpener();
         System.out.println("Signals fra porten");
         Port();
     }
 
-    public static Sensor getGlobalSensor() {
+    public static Sensor getGlobalSensor() {    // En global Oprettes
 
         return globalSensor;
     }
 
-    private static final Sensor globalSensor = new Sensor();
-
-
-    
+         /**
+          * Willaim har anbefald Singalton
     //https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples#:~:text=Singleton%20pattern%20restricts%20the%20instantiation,objects%2C%20caching%20and%20thread%20pool.
-
+                    Vi skal Slette kommenteren igen
+          */
     public void Port() {
         try {
-            //Serial Port set up
-            serialPort.openPort();
+            //Standard SeriaPort opsætning med buad rate på 57600
+
+            serialPort.openPort();  // åbner porten
             serialPort.setParams(57600, 8, 1, 0);
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
             serialPort.setDTR(true);
@@ -36,7 +38,7 @@ public class Sensor extends Thread {
         }
     }
 
-
+        //Tjekker om der kommer data og om data er positiv
     public String sensorData() {
         input = null;
         try {
@@ -53,7 +55,7 @@ public class Sensor extends Thread {
         return input;
     }
 
-    public void PortCloser() {
+    public void PortCloser() {   // Metoden Lukker porten
         try {
             serialPort.closePort();
 
