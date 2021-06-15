@@ -38,7 +38,7 @@ public class Sensor extends Thread {
         }
     }
 
-        //Tjekker om der kommer data og om data er positiv
+        //Metoden tjekker om der kommer overhoved data og om data er positiv. Desuden læser den som string
     public String sensorData() {
         input = null;
         try {
