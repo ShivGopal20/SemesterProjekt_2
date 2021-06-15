@@ -10,7 +10,6 @@ public class Measurements {
     //Nedenstående metoden bruges til at behandle dataen.
     //Her splittes inputtet op i en array, og der bruges også en buffer, så der ikke mistes data.
     public void DataProcessing() {
-        for (int x = 0; x < 10; x++) {
             String data = sensorObject.sensorData();
             if (data != null) {
                 buffer = buffer + data;
@@ -25,9 +24,6 @@ public class Measurements {
                     }
                 }
             }
-
-
-        }
         sensorObject.PortCloser();
     }
 }

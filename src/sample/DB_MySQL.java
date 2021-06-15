@@ -35,13 +35,14 @@ public class DB_MySQL {
     }
 
     //Her forsøges der at indsætte de målte EKG-værdier ind i tabellen.
-    public void ECG_Inserter(int ECG) {
+    public void ECG_Inserter(int ECG,String CPR) {
         try {
             SQLConnection();
-            String DB_Writer = "insert into ECG_Values" + "(ECG) values(?)";
+            String DB_Writer = "insert into ECG_Values" + "(ECG, CPR) values(?,?)";
             PreparedStatement PS = MySQLConnection.prepareStatement(DB_Writer);
 
             PS.setDouble(1, ECG);
+            PS.setString(2, CPR);
 
             PS.execute();
             SQLConnectionRemover();
