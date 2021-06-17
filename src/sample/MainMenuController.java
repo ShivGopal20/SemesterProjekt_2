@@ -38,12 +38,14 @@ public class MainMenuController extends Thread {
         ShowGraph();
         ShowPulse();
         SaveData();
+        //sensor.PortCloser();
     }
 
     public void ShowValues() {
         ecgText.setText("ECG & time \n-----------");
 
         for (int counter = 0; counter < measurements.ArrayData.length; counter++) {
+            System.out.println("Længde af array: "+measurements.ArrayData.length);
                 if (NumberChecker(counter)){
                 ecgValues.getData().add(new XYChart.Data(counter,Integer.parseInt(measurements.ArrayData[counter])));
                 ecgText.appendText("\n" + counter + "ms  ,  " + measurements.ArrayData[counter] + "mV");
@@ -56,9 +58,9 @@ public class MainMenuController extends Thread {
     public boolean NumberChecker(int counter) {
         String maaling = measurements.ArrayData[counter];
         for (int i = 0; i < maaling.length(); i++) {
-            if (maaling.charAt(i) >= '0' && maaling.charAt(i) <= '9') {
-                return true;
-            } else {
+            if(maaling.matches("^[0-9]*$")) {
+                return true;}
+            else {
                 return false;
             }
         }
