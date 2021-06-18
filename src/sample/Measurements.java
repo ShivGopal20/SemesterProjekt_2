@@ -17,7 +17,7 @@ public class Measurements {
             if (SkilletegnPlacering > -1) {
                 ArrayData = buffer.split(",");
                 if (ArrayData != null && ArrayData.length > 0) {
-                    if (buffer.charAt(buffer.length() - 1) != 44) {
+                    if (buffer.charAt(buffer.length() - 1) != 44) { //44 er kommas charat nummer. TODO: Det skal rettes på din PC!
                         buffer = ArrayData[ArrayData.length - 1];
                     } else {
                         buffer = "";
@@ -25,6 +25,5 @@ public class Measurements {
                 }
             }
         }
-        //  sensorObject.PortCloser();
     }
 }

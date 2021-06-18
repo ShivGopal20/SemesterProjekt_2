@@ -7,7 +7,7 @@ public class Sensor extends Thread {
     private static final Sensor globalSensor = new Sensor();
     String input;
     // SerialPort connection objekts oprettes og Portnavn skal skiftes som findes under "Tools" i arduino programmen.
-    SerialPort serialPort = new SerialPort("/dev/cu.usbmodem141101");//ToDo: Change port path
+    SerialPort serialPort = new SerialPort("/dev/cu.usbmodem14101");//ToDo: Change port path
 
     private Sensor() {   // Her tilkaldes JSSC- SerialPort Opsætning
         //PortOpener();

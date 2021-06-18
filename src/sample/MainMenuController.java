@@ -46,7 +46,7 @@ public class MainMenuController extends Thread {
 
         for (int counter = 0; counter < measurements.ArrayData.length; counter++) {
             System.out.println("Længde af array: "+measurements.ArrayData.length);
-                if (NumberChecker(counter)){
+                if (NumberChecker((measurements.ArrayData[counter]))){
                 ecgValues.getData().add(new XYChart.Data(counter,Integer.parseInt(measurements.ArrayData[counter])));
                 ecgText.appendText("\n" + counter + "ms  ,  " + measurements.ArrayData[counter] + "mV");
                 String NewEcgText = ecgText.getText();
@@ -55,8 +55,8 @@ public class MainMenuController extends Thread {
         }
     }
 
-    public boolean NumberChecker(int counter) {
-        String maaling = measurements.ArrayData[counter];
+    public boolean NumberChecker(String value) {
+        String maaling = value;
         for (int i = 0; i < maaling.length(); i++) {
             if(maaling.matches("^[0-9]*$")) {
                 return true;}
@@ -73,7 +73,7 @@ public class MainMenuController extends Thread {
 
     public void SaveData() {
         for (int counter = 0; counter < measurements.ArrayData.length; counter++){
-            if (NumberChecker(counter)){
+            if (NumberChecker(measurements.ArrayData[counter])){
         database.ECG_Inserter(Integer.parseInt(measurements.ArrayData[counter]), CprTilSQL);}
         }
     }
@@ -93,7 +93,7 @@ public class MainMenuController extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (CprString.length() == 10) {
+        if (CprString.length() == 10 && NumberChecker(CprString)) {
             CprTilSQL = CprString;
             AlertPopUp("CPR", "CPR is verified");}
         else {
