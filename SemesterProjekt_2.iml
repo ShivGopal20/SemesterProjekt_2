@@ -23,8 +23,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="jssc-2.8.0" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.251" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="Jssc 2.8" level="project" />
   </component>
 </module>
