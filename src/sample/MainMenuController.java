@@ -46,7 +46,6 @@ public class MainMenuController extends Thread {
         ecgText.setText("ECG & time \n-----------");
 
         for (int counter = 0; counter < measurements.ArrayData.length; counter++) {
-            System.out.println("Længde af array: "+measurements.ArrayData.length);
                 if (NumberChecker((measurements.ArrayData[counter]))){
                 ecgValues.getData().add(new XYChart.Data(counter,Integer.parseInt(measurements.ArrayData[counter])));
                 ecgText.appendText("\n" + counter + "ms  ,  " + measurements.ArrayData[counter] + "mV");
@@ -72,6 +71,7 @@ public class MainMenuController extends Thread {
         for (int counter = 0; counter < measurements.ArrayData.length; counter++){
             if (NumberChecker(measurements.ArrayData[counter])){
         database.ECG_Inserter(Integer.parseInt(measurements.ArrayData[counter]), CprTilSQL);} }
+        System.out.println("metoden SaveData til database virker  ");
     }
     public void Clear() {
         ecgText.clear();

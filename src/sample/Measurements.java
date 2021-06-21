@@ -25,5 +25,8 @@ public class Measurements {
                 }
             }
         }
+        for(int tæller = 0; tæller < ArrayData.length; tæller++) {
+            System.out.println("Værdi nr: "+tæller+" i arrayen: "+ArrayData[tæller]);
+        }
     }
 }

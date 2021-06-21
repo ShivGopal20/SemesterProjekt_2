@@ -24,11 +24,11 @@ public class Sensor extends Thread {
         try {
             //Standard SeriaPort opsætning med buad rate på 57600
             serialPort.openPort();  // åbner porten
-            System.out.println(" Port åbener virker : ");
+            System.out.println("Port åbener virker.");
             serialPort.setParams(57600, 8, 1, 0);
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
             serialPort.setDTR(true);
-            System.out.println(" Port Opstillinger er korrekt! ");
+            System.out.println("Port Opstillinger er korrekt.");
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
