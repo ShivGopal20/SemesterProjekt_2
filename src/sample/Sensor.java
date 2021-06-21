@@ -9,7 +9,7 @@ public class Sensor extends Thread {
     // SerialPort connection objekts oprettes og Portnavn skal skiftes som findes under "Tools" i arduino programmen.
     SerialPort serialPort = new SerialPort("/dev/cu.usbmodem14101");//ToDo: Change port path
 
-    private Sensor() {   // Her tilkaldes JSSC- SerialPort Opsætning
+    public Sensor() {   // Her tilkaldes JSSC- SerialPort Opsætning
         //PortOpener();
         Port();
     }
@@ -19,19 +19,16 @@ public class Sensor extends Thread {
         return globalSensor;
     }
 
-         /**
-          * Willaim har anbefald Singalton
-    //https://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples#:~:text=Singleton%20pattern%20restricts%20the%20instantiation,objects%2C%20caching%20and%20thread%20pool.
-                    Vi skal Slette kommenteren igen
-          */
+    // Metoden  til opstilling af SerialPort
     public void Port() {
         try {
             //Standard SeriaPort opsætning med buad rate på 57600
-
             serialPort.openPort();  // åbner porten
+            System.out.println(" Port åbener virker : ");
             serialPort.setParams(57600, 8, 1, 0);
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
             serialPort.setDTR(true);
+            System.out.println(" Port Opstillinger er korrekt! ");
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
@@ -53,7 +50,7 @@ public class Sensor extends Thread {
         }
         return input;
     }
-
+/*
     public void PortCloser() {   // Metoden Lukker porten
         try {
             serialPort.closePort();
@@ -63,4 +60,5 @@ public class Sensor extends Thread {
         }
     }
 
+ */
 }
