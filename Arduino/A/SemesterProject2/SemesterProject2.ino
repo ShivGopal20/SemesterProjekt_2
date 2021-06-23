@@ -27,6 +27,7 @@ int getECGADC(){
     digitalWrite(10, LOW);
     int Tal = SPI.transfer16(0x00);
     digitalWrite(10, HIGH);
+    
 
 return Tal;
   }

@@ -2,13 +2,11 @@ package sample;
 
 public class Measurements {
     Sensor sensorObject = Sensor.getGlobalSensor();
-    //singleton pattern for at have global sensor, andre ikke kan overskrive, men tilgå.
-    //hensigtmæssigt i projekt?
     public String[] ArrayData;
     String buffer = "";
 
-    //Nedenstående metoden bruges til at behandle dataen.
-    //Her splittes inputtet op i en array, og der bruges også en buffer, så der ikke mistes data.
+    //I denne metode splittes inputtet op i en array, og der bruges også en buffer, så der ikke mistes data.
+    //Denne metode er adskilt fra sensorData() metoden, for at bevare SOC, Seperation og concerns.
     public void DataProcessing() {
         String data = sensorObject.sensorData();
         if (data != null) {
@@ -25,8 +23,8 @@ public class Measurements {
                 }
             }
         }
-        for(int tæller = 0; tæller < ArrayData.length; tæller++) {
+        /*for(int tæller = 0; tæller < ArrayData.length; tæller++) {
             System.out.println("Værdi nr: "+tæller+" i arrayen: "+ArrayData[tæller]);
-        }
+        }*/
     }
 }

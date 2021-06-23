@@ -6,7 +6,7 @@ public class DB_MySQL {
 
     //Nedenfor defineres de static variabler der skal bruges i forbindelse med databasen.
     //Connection bruges til både, at danne og slukke forbindelse med databasen.
-    //De 3 String værdier bruges, som argumenter til at connection også.
+    //De 3 String værdier bruges, som argumenter til at connection kan dannes.
     static Connection MySQLConnection;
     static Statement statement;
     static String URL = "jdbc:mysql://localhost:3306/ECG_Gruppe3";
@@ -20,10 +20,12 @@ public class DB_MySQL {
             statement = MySQLConnection.createStatement();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+
         }
+        //System.out.println("Konnektion til MySQL er verified "); //Til Unit testing
     }
 
-    //Denne metoder forsøger at slukke forbindelsen.
+    //Denne metode forsøger at slukke forbindelsen.
     public void SQLConnectionRemover(){
         try {
             if (!MySQLConnection.isClosed()){
@@ -32,9 +34,10 @@ public class DB_MySQL {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        //System.out.println("Connection remover verified ");//Til Unit testing
     }
 
-    //Her forsøges der at indsætte de målte EKG-værdier ind i tabellen.
+    //Her forsøges der at indsætte de målte ECG-værdier ind i tabellen.
     public void ECG_Inserter(int ECG,String CPR) {
         try {
             SQLConnection();
@@ -50,6 +53,7 @@ public class DB_MySQL {
             e.printStackTrace();
             SQLConnectionRemover();
         }
+        //System.out.println("EKG inserter verified ");//Til Unit testing
     }
 
 }

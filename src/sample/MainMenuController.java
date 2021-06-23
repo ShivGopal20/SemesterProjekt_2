@@ -32,16 +32,15 @@ public class MainMenuController extends Thread {
     String CprString;
     String CprTilSQL = "0";
 
-    //Metodens opgave at stater andre metoder
+    //Dette er Start knappens onAction metode, hvis opgave er at starte andre metoder.
     public void ECGstarter() {
         measurements.DataProcessing();
         ShowValues();
         ShowGraph();
-        //ShowPulse();
         SaveData();
-        //sensor.PortCloser();
+        Sensor.getGlobalSensor().PortCloser();
     }
-    //Metoden står for den popUp box med ECG værdier
+    //Metoden sørger for både at indsætte ECG værdier i TextArea, og i XY.Chart serien.
     public void ShowValues() {
         ecgText.setText("ECG & time \n-----------");
 
@@ -54,7 +53,7 @@ public class MainMenuController extends Thread {
                 }
         }
     }
-    //NumberChecker met
+    //NumberChecker metoden sørger for frasortere ugyldige værdier, som indeholder andet end tal.
     public boolean NumberChecker(String value) {
         String maaling = value;
         for (int i = 0; i < maaling.length(); i++) {
@@ -66,17 +65,25 @@ public class MainMenuController extends Thread {
         }
         return false;
     }
+    //Metoden sørger for at plotte XY.Chart seriens værdier ind på grafen.
     public void ShowGraph() {ecgGraph.getData().add(ecgValues); }
+
+    //Denne metoder indsætter de målte værdier samt. evt et CPR nummer i SQL-databasen.
+    //Her bliver der nemlig kaldt på metoder fra Database klassen, hvor de forklares yderlligere.
     public void SaveData() {
         for (int counter = 0; counter < measurements.ArrayData.length; counter++){
             if (NumberChecker(measurements.ArrayData[counter])){
         database.ECG_Inserter(Integer.parseInt(measurements.ArrayData[counter]), CprTilSQL);} }
-        System.out.println("metoden SaveData til database virker  ");
+       // System.out.println("metoden SaveData til database virker  ");//Til Unit testing
     }
+    //Metoden nulstiller både Linechartens indhold og TextAreas inhold. Så GUI er nulstillet.
     public void Clear() {
         ecgText.clear();
         ecgGraph.getData().clear();
     }
+
+    //Denne metode bekræfter/afkræfter det indtastede CPR-nummer ud fra passende kriterier som:
+    //længde og at den indtastede tekst udelukkende skal være tal, hvilket gøres vha. Numberchecker().
     public void CPR_Check() {
         try {
             CprString = String.valueOf(CPR_Nummer.getText());
@@ -89,7 +96,9 @@ public class MainMenuController extends Thread {
         else {
             AlertPopUp("CPR Error", "CPR shall be 10 digits");
         }
-    }//Denne metoder checker om der er et 10 cifret CPR nummer som kan bruges.
+    }
+
+    //Denne metoder bruges til at lave AlertPopUps, som bruges hvis man indtaster et ugyldigt CPR-nummer.
     public void AlertPopUp(String AlertTitle, String AlertNote) {
         Stage AlertBox = new Stage();
 
@@ -111,9 +120,5 @@ public class MainMenuController extends Thread {
         AlertBox.setScene(AlertScene);
         AlertBox.show();
     }
-    /*
-    public void ShowPulse() {
-    }
 
- */
 }

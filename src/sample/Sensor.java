@@ -4,37 +4,35 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 
 public class Sensor extends Thread {
-    private static final Sensor globalSensor = new Sensor();
+    private static Sensor globalSensor = new Sensor();
     String input;
-    // SerialPort connection objekts oprettes og Portnavn skal skiftes som findes under "Tools" i arduino programmen.
+    // SerialPort connection oprettes og portnavn skal tilpasses ift den anvendte port i arduino programmet.
     SerialPort serialPort = new SerialPort("/dev/cu.usbmodem14101");//ToDo: Change port path
 
-    public Sensor() {   // Her tilkaldes JSSC- SerialPort Opsætning
-        //PortOpener();
+    public Sensor() {// Her tilkaldes JSSC SerialPort opsætningen via Port() metoden.
         Port();
     }
 
-    public static Sensor getGlobalSensor() {    // En global Oprettes
+    public static Sensor getGlobalSensor() {
 
         return globalSensor;
     }
 
-    // Metoden  til opstilling af SerialPort
+    // Metode til at danne forbindelse med Serialporten.
     public void Port() {
         try {
-            //Standard SeriaPort opsætning med buad rate på 57600
-            serialPort.openPort();  // åbner porten
-            System.out.println("Port åbener virker.");
+            //Standard SerialPort opsætning med baud rate på 57600.
+            serialPort.openPort();  // Porten åbnes.
+            //System.out.println("Port opener virker."); // Til Unit Testing
             serialPort.setParams(57600, 8, 1, 0);
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
             serialPort.setDTR(true);
-            System.out.println("Port Opstillinger er korrekt.");
+            //System.out.println("Port opstillinger er korrekt."); // Til Unit Testing
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
     }
-
-        //Metoden tjekker om der kommer overhoved data og om data er positiv. Desuden læser den som string
+        //Metoden tjekker om der kommer data. Desuden læses inputtet som en streng.
     public String sensorData() {
         input = null;
         try {
@@ -49,9 +47,9 @@ public class Sensor extends Thread {
             e.printStackTrace();
         }
         return input;
+
     }
-/*
-    public void PortCloser() {   // Metoden Lukker porten
+    public void PortCloser() {   //Metoden Lukker porten
         try {
             serialPort.closePort();
 
@@ -59,6 +57,4 @@ public class Sensor extends Thread {
             e.printStackTrace();
         }
     }
-
- */
 }
