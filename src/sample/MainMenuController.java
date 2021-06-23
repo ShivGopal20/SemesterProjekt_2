@@ -53,7 +53,7 @@ public class MainMenuController extends Thread {
                 }
         }
     }
-    //NumberChecker metoden sørger for frasortere ugyldige værdier, som indeholder andet end tal.
+    //NumberChecker metoden sørger for at frasortere ugyldige CPR-værdier, som indeholder andet end tal.
     public boolean NumberChecker(String value) {
         String maaling = value;
         for (int i = 0; i < maaling.length(); i++) {
@@ -65,25 +65,25 @@ public class MainMenuController extends Thread {
         }
         return false;
     }
-    //Metoden sørger for at plotte XY.Chart seriens værdier ind på grafen.
+    //Metoden sørger for at plotte XY.Chart seriens værdier i grafen.
     public void ShowGraph() {ecgGraph.getData().add(ecgValues); }
 
-    //Denne metoder indsætter de målte værdier samt. evt et CPR nummer i SQL-databasen.
-    //Her bliver der nemlig kaldt på metoder fra Database klassen, hvor de forklares yderlligere.
+    //Denne metoder indsætter de målte værdier samt evt et CPR-nummer i SQL-databasen.
+    //Her bliver der kaldt på metoder fra Database-klassen, hvor de forklares yderligere.
     public void SaveData() {
         for (int counter = 0; counter < measurements.ArrayData.length; counter++){
             if (NumberChecker(measurements.ArrayData[counter])){
         database.ECG_Inserter(Integer.parseInt(measurements.ArrayData[counter]), CprTilSQL);} }
        // System.out.println("metoden SaveData til database virker  ");//Til Unit testing
     }
-    //Metoden nulstiller både Linechartens indhold og TextAreas inhold. Så GUI er nulstillet.
+    //Metoden nulstiller både Linechartens indhold og TextAreas inhold, så GUI er nulstillet.
     public void Clear() {
         ecgText.clear();
         ecgGraph.getData().clear();
     }
 
-    //Denne metode bekræfter/afkræfter det indtastede CPR-nummer ud fra passende kriterier som:
-    //længde og at den indtastede tekst udelukkende skal være tal, hvilket gøres vha. Numberchecker().
+    //Denne metode be- eller afkræfter det indtastede CPR-nummer ud fra passende kriterier såsom:
+    //længde og at den indtastede tekst udelukkende indeholder tal, hvilket gøres vha. Numberchecker().
     public void CPR_Check() {
         try {
             CprString = String.valueOf(CPR_Nummer.getText());

@@ -18,7 +18,7 @@ public class Sensor extends Thread {
         return globalSensor;
     }
 
-    // Metode til at danne forbindelse med Serialporten.
+    // Metode til at danne forbindelse med serialporten.
     public void Port() {
         try {
             //Standard SerialPort opsætning med baud rate på 57600.
@@ -32,7 +32,7 @@ public class Sensor extends Thread {
             e.printStackTrace();
         }
     }
-        //Metoden tjekker om der kommer data. Desuden læses inputtet som en streng.
+        //Metoden tjekker om der kommer data, desuden læses inputtet som en streng.
     public String sensorData() {
         input = null;
         try {

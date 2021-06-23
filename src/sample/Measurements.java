@@ -5,7 +5,7 @@ public class Measurements {
     public String[] ArrayData;
     String buffer = "";
 
-    //I denne metode splittes inputtet op i en array, og der bruges også en buffer, så der ikke mistes data.
+    //I denne metode splittes inputtet op i en array, og der bruges en buffer, så der ikke mistes data.
     //Denne metode er adskilt fra sensorData() metoden, for at bevare SOC, Seperation og concerns.
     public void DataProcessing() {
         String data = sensorObject.sensorData();
